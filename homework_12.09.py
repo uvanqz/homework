@@ -1,6 +1,6 @@
-def percents(str):
+def percents(string):
     big_str = 0
-    stroka = str.split(" ")
+    stroka = string.split(" ")
     for podstroka in stroka:
         upp = 0  
         low = 0 
