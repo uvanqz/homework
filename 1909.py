@@ -10,6 +10,8 @@ def proverka_dats(day, month, year):
         return True
     if proverka_year == True and month == 2 and 1 <= day <= 29:
         return True
+    if proverka_year == False and month == 2 and 1 <= day <= 28:
+        return True
     else:
         return False
 print(proverka_dats(29, 2, 2020))
