@@ -7,7 +7,7 @@ class Circle:
         return 2 * math.pi * self.r
     
     def get_ploshad(self):
-        return math.pi * (self.r) ** 2
+        return math.pi * (self.r ** 2)
 
 circle = Circle(5)
 print(circle.get_length())
