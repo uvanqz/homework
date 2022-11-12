@@ -5,7 +5,7 @@ class Triangle:
         self.c = c
 
     def get_perimeter(self):
-        return (self.a + self.b + self.c)
+        return self.a + self.b + self.c
     
     def get_ploshad(self):
         p = self.get_perimeter() / 2
@@ -13,4 +13,4 @@ class Triangle:
 
 triangle = Triangle(15, 13, 17)
 print(triangle.get_perimeter())
-print(triangle.get_ploshad())   
+print(triangle.get_ploshad())    
