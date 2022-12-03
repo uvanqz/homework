@@ -19,5 +19,5 @@ class Circle:
         if all([isinstance(ra, (int, float)) for ra in radius]):
             return all([ra > 0 for ra in radius])
 circle = Circle(5)
-print(circle.get_length())
-print(circle.get_ploshad())
+print(round(circle.get_length(), 3))
+print(round(circle.get_ploshad(), 3))
