@@ -21,6 +21,6 @@ class Triangle:
         if all([isinstance(side, (int, float)) for side in sides]):
             return all([side > 0 and self.get_perimeter() - 2 * side > 0 for side in sides])
 
-triangle = Triangle(5, 3, 7)
-print(triangle.get_perimeter())
-print(triangle.get_ploshad())  
+triangle = Triangle(.2, .2, .2)
+print(round(triangle.get_perimeter(), 3))
+print(round(triangle.get_ploshad(), 3))   
