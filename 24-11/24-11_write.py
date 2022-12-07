@@ -20,15 +20,14 @@ class Building:
     def to_tuple(self):
         return self.floors, self.height, self.width, self.name
 
-building_1 = Building(1, 2, 3, 'aaa')
-building_2 = Building(3, 4, 5, 'bbb')
-building_3 = Building(5, 6, 7, 'ccc')
-building_4 = Building(7, 8, 9, 'ddd')
-building_5 = Building(9, 10, 11, 'eee')
+buildings = list()
+print('Введите количество зданий: ')
+chislo_buildings = int(input())
 
+for i in range(chislo_buildings):
+    building = Building(int(input("Введите количество этажей здания {}: ".format(i+1))), int(input("Введите высоту здания {}: ".format(i+1))), int(input("Введите ширину здания {}: ".format(i+1))), input("Введите название здания {}: ".format(i+1)))
+    buildings.append(building)
 
-buildings: list = [building_1, building_2, building_3, building_4, building_5]
-
-with open('buildings', 'wt') as file:
+with open('buildings_file', 'wt') as file:
     csv_writer = csv.writer(file)
     csv_writer.writerows([building.to_tuple() for building in buildings])
