@@ -25,7 +25,11 @@ print('Введите количество зданий: ')
 chislo_buildings = int(input())
 
 for i in range(chislo_buildings):
-    building = Building(int(input("Введите количество этажей здания {}: ".format(i+1))), int(input("Введите высоту здания {}: ".format(i+1))), int(input("Введите ширину здания {}: ".format(i+1))), input("Введите название здания {}: ".format(i+1)))
+    floors = int(input("Введите количество этажей здания {}: ".format(i+1)))
+    height = int(input("Введите высоту здания {}: ".format(i+1)))
+    width = int(input("Введите ширину здания {}: ".format(i+1)))
+    name = input("Введите название здания {}: ".format(i+1))
+    building = Building(floors, height, width, name)
     buildings.append(building)
 
 with open('buildings_file', 'wt') as file:
