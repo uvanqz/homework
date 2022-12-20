@@ -10,14 +10,13 @@ class Barber:
     TIMEOUT = 20
     WORK_INTERVAL = (6, 8)
 
-    def __init__(self, database: dict):
-        self.database = database
+    def __init__(self):
         self.__client_came = Event()
 
     def sleep(self):
         print('В приёмной клиентов нет. Парикмахер спит')
         sleep_result = self.__client_came.wait(timeout=Barber.TIMEOUT)
-        return sleep_result, self.database
+        return sleep_result
 
     def call(self):
         self.__client_came.set()
@@ -35,12 +34,11 @@ class Barber:
 
 
 class Salon:
-    def __init__(self, database: dict, q_size: int, mutex: Lock):
-        self.database = database
+    def __init__(self, q_size: int, mutex: Lock):
         self.q_size = q_size
         self.mutex = mutex
         self.__queue = Queue(maxsize=q_size)
-        self.__worker = Barber(database)
+        self.__worker = Barber()
         self.__process = Process(target=self.work)
 
     def open(self):
@@ -55,8 +53,7 @@ class Salon:
             self.mutex.acquire()
             if self.__queue.empty():
                 self.mutex.release()
-                sleep_result, database = self.__worker.sleep()
-                self.database = database
+                sleep_result = self.__worker.sleep()
                 if not sleep_result:
                     self.close()
                     break
@@ -81,10 +78,9 @@ CLIENT_ENTER_INTERVAL = (3, 4)
 
 if __name__ == '__main__':
     mutex = Lock()
-    database = {}
 
     clients: list = [Client(str(i)) for i in range(1, 10)]
-    salon = Salon(database, SIZE_QUEUE, mutex)
+    salon = Salon(SIZE_QUEUE, mutex)
     salon.open() 
     for client in clients:
         sleep(randint(*CLIENT_ENTER_INTERVAL))
